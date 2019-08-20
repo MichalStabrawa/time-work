@@ -3,22 +3,33 @@
   <nav></nav>
   <header>
 <div class="header-wrapper">
-  <h1>Czas pracy</h1>
-  <h2>Projekt Studia Podyplomowe AGH "Metody Wytwarzania Oprogramowania</h2>
+  <h1>{{count.title}}</h1>
+  <h2>{{count.title2}}</h2>
   <button class="btn">Testuj</button>
 </div>
+
   </header>
 </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import {test1} from '~/server/test.js'
+
 
 export default {
   components: {
-    Logo
+   
   },
+  data() {
+    return {
+      title: null
+    }
+  },
+
+  computed: {
+    count() {
+      return this.$store.state.header;
+    }
+  }
  
 }
 </script>
