@@ -1,26 +1,14 @@
 <template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        aghNode-Project
-      </h1>
-      <h2 class="subtitle">
-        project AGH
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">{{data}}</a>
-      </div>
-      {{data}}
-    </div>
-  </section>
+<div>
+  <nav></nav>
+  <header>
+<div class="header-wrapper">
+  <h1>Czas pracy</h1>
+  <h2>Projekt Studia Podyplomowe AGH "Metody Wytwarzania Oprogramowania</h2>
+  <button class="btn">Testuj</button>
+</div>
+  </header>
+</div>
 </template>
 
 <script>
@@ -31,43 +19,40 @@ export default {
   components: {
     Logo
   },
-  computed: {
-    data() {
-     
-    }
-  }
+ 
 }
 </script>
 
 <style>
-
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+nav {
+  height: 80px;
+  background: #f0f4f7;
+}
+header {
+  background: url('../assets/img/header-agh.jpeg');
+  height:calc(100vh - 80px) ;
+  background-position: center;
+  background-size: cover;
+  padding: 50px;
+  
+}
+h1,h2 {
+  color: #3f5795;
+  width: 50%;
+}
+h1 {
+  font-size: 56px;
+  margin-bottom: 50px;
+}
+.btn {
+  width: 220px;
+  height: 60px;
+  background: #3f5795;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  font-size: 20px;
+  margin-top: 50px;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>

@@ -20,8 +20,16 @@ const data2 = kowalski_jan.data;
 console.log(typeof data2);
 
 for(var i =0;i<kowalski_jan.data.projekt1.length;i++) {
-  console.log(i)
+  console.log(i + kowalski_jan.data.projekt1[i]);
 }
+
+console.log(data2);
+
+for (prop in data2) {
+  console.log(data2[prop]);
+}
+
+module.exports = kowalski_jan;
 
 app.set('port', port)
 
