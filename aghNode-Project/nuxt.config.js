@@ -28,9 +28,9 @@ module.exports = {
   */
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    '@/assets/css/main.css',
+    '../aghNode-Project/assets/css/style.css',
     // SCSS file in the project
-    '@/assets/css/main.scss'
+    '../aghNode-Project/assets/css/style.scss'
   ],
 
   /*
