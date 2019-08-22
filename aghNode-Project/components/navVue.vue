@@ -1,13 +1,23 @@
 <template>
-    <nav class="nav">
-<a href="">Home</a>
-    </nav>
+  <nav class="nav">
+    <nuxt-link class="link" to="/">Home</nuxt-link>
+    <nuxt-link class="link" to="/select">Select</nuxt-link>
+  </nav>
 </template>
 
 <script>
 export default {
-    
-}
+  data() {
+    return {
+      flag: false
+    };
+  },
+  methods: {
+    active() {
+      console.log("Test");
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -25,11 +35,11 @@ export default {
     font-size: 20px;
     font-weight: bold;
     transition: all 0.5s;
+    padding: 10px;
 
-&:hover {
-  color: grey;
-}
-
+    &:hover {
+      color: grey;
+    }
   }
 }
 </style>

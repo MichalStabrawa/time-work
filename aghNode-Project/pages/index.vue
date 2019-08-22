@@ -5,7 +5,7 @@
       <div class="header-wrapper">
         <h1>{{count.title}}</h1>
         <h2>{{count.title2}}</h2>
-        <button class="btn">Testuj</button>
+        <button class="btn" @click="alarm">Testuj</button>
       </div>
   
     </header>
@@ -20,6 +20,11 @@
     data() {
       return {
         title: null
+      }
+    },
+    methods: {
+      alarm() {
+        console.log('Test')
       }
     },
   
