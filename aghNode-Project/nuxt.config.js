@@ -14,8 +14,10 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {rel:'stylesheet', href:"https://use.fontawesome.com/releases/v5.7.2/css/all.css"}
+    ],
+  
   },
 
   /*
@@ -45,7 +47,11 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    
+  
+    
+  
   ],
   /*
   ** Axios module configuration
@@ -61,8 +67,9 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+  
     extend(config, ctx) {
-      
+     
     }
   }
 }

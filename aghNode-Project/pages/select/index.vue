@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="container main">
-      <h1>Wybierz pracownika</h1>
-
-    <select name="" id="">
-      <option value="">Option1</option>
-    </select>
+      <div class="item">
+        <h1>Wybierz pracownika</h1>
+        <select name id>
+          <option value>Option1</option>
+        </select>
+      </div>
+      <div class="item">2</div>
     </div>
     <footerComponent/>
   </div>
@@ -29,12 +31,23 @@ h1 {
 }
 .main {
   height: calc(100vh - 180px);
+  display: flex;
+  .item {
+    width: 50%;
+  }
+  .item:nth-last-of-type(1) {
+    background: url('../../assets/img/test.jpeg');
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
-select{
+select {
   width: 300px;
   height: 40px;
-  border-radius: 5px ;
+  border-radius: 5px;
   border: 1px solid grey;
   font-size: 22px;
 }
