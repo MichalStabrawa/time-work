@@ -1,7 +1,7 @@
 <template>
   <nav class="nav">
     <nuxt-link class="link" to="/">Home</nuxt-link>
-    <nuxt-link class="link" to="/select">Select</nuxt-link>
+    <nuxt-link class="link" to="/select">Pracownicy</nuxt-link>
   </nav>
 </template>
 

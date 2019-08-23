@@ -9,13 +9,15 @@
       </div>
   
     </header>
+    <footerComponent />
   </div>
 </template>
 
 <script>
+import footerComponent from '../components/footerComponent';
   export default {
     components: {
-  
+  footerComponent
     },
     data() {
       return {
