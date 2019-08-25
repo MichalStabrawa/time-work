@@ -7,6 +7,7 @@ const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
 const test1 = require('./file');
+const testApi = require('./project');
 //const projekt = require('./kowalski.xls');
 
 const kowalski_jan = {
@@ -14,22 +15,37 @@ const kowalski_jan = {
   data: test1,
 }
 
-console.log(kowalski_jan.data.projekt1);
+const testNowak = test1.piotrNowakNew;
+
+//console.log(kowalski_jan.data.projekt1);
 
 const data2 = kowalski_jan.data;
-console.log(typeof data2);
 
-for(var i =0;i<kowalski_jan.data.projekt1.length;i++) {
+ var obj = [];
+ obj.push(kowalski_jan,testNowak);
+console.log("Object-------------------------->")
+ console.log(obj);
+//console.log(typeof data2);
+
+/*for(var i =0;i<kowalski_jan.data.projekt1.length;i++) {
   console.log(i + kowalski_jan.data.projekt1[i]);
-}
+}*/
 
-console.log(data2);
+//console.log(data2);
 
-for (prop in data2) {
+/*for (prop in data2) {
   console.log(data2[prop]);
-}
+}*/
+const testApiJson = testApi;
 
-module.exports = kowalski_jan;
+
+console.log('APi:')
+console.log(testApiJson.list.projekt1)
+
+
+
+
+
 
 app.set('port', port)
 
@@ -53,8 +69,10 @@ async function start() {
   // Listen the server
   app.listen(port, host)
   consola.ready({
-    message: `Server listening on http://${host}:${port}`,
+    message: `Server listening on http:${kowalski_jan.projekt1}`,
     badge: true
   })
 }
 start()
+
+
