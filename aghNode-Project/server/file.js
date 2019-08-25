@@ -58,6 +58,11 @@ const piotrNowakNew = {
 console.log("Pokaz Piotr Nowak --------------------------------------------------")
 console.log(piotrNowakNew);
 
+for (const i in piotrNowak) {
+    console.log("Klucz: ", i);
+    console.log("Wartość: ", piotrNowak[i].time);
+}
+
 
 
 
