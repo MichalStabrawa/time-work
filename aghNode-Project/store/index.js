@@ -4,6 +4,10 @@ export const state = () => {
         title: "Czas Pracy",
         title2: "Projekt Metody Wytwarzania Oprogramowania AGH Kraków "
       },
+
+
+
+  
   
   }
 };

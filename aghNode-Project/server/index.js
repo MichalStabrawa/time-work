@@ -81,7 +81,9 @@ config.dev = !(process.env.NODE_ENV === 'production')
   })
 }*/
 async function startFrontend () {
+  var cors = require('cors');
   const app = express();
+  app.use(cors());
   const host = process.env.HOST || '127.0.0.1';
   const port = process.env.PORT || 3000;
   app.set('port', port);
@@ -108,14 +110,21 @@ async function startFrontend () {
 startFrontend()
 
 async function startBackend () {
+  var cors = require('cors')
+ 
+  const app = express();
+  app.use(cors());
 
-  const app = express()
 const host = process.env.BACKEND_HOST || '127.0.0.1'
 const port = process.env.BACKEND_PORT || 3001
 
 app.get('/api/data', function (req, res) {
     res.send(data2);
 });
+
+app.get('/api/data2',function(req,res){
+  res.send(obj);
+})
 
 app.listen(port, host)
 }

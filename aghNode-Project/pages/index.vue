@@ -9,6 +9,7 @@
       </div>
   
     </header>
+    <div>{{newTech}}</div>
     <footerComponent />
   </div>
 </template>
@@ -30,6 +31,7 @@ import footerComponent from '../components/footerComponent';
       
  },callServer() {
      this.$axios.get('http://127.0.0.1:3001/api/data').then(res => {
+       console.log('Data with click');
        console.log('res', res.data)
     })
   }
@@ -39,7 +41,8 @@ import footerComponent from '../components/footerComponent';
     computed: {
       count() {
         return this.$store.state.header;
-      }
+      },
+    
     }
   
   }
