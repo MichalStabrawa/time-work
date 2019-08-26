@@ -10,13 +10,14 @@
         </select>
          <el-button type="primary">Sprawdź</el-button>
       </div>
-      <div class="item">{{callServer}}</div>
+      <div class="item"></div>
     </div>
     <section>
-      {{callServer}}
+     
+     
   
 
-<div v-for="(item, index) in dane" :key="index">{{index}}</div>
+
   
     </section>
     <footerComponent/>
@@ -34,16 +35,11 @@ export default {
      dane: null
     };
   },
-  computed: {
-    callServer() {
-     this.$axios.get('http://127.0.0.1:3001/api/data').then(res => {
-       console.log('Test');
-       console.log('res', res.data);
-       return this.dane = res.data;
-    })
-  }
-  },
- 
+ computed:{
+dataPower() {
+  return this.$store.state.coins;
+}
+ }
 };
 </script>
 
