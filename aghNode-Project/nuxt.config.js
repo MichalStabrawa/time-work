@@ -61,13 +61,7 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
     proxy: true
   },
-
-  proxy: {
-    proxy: {
-      '/api/': 'http://127.0.0.1:3001/api/data',
-   
-    }
-  }
+  
 
   /*
   ** Build configuration

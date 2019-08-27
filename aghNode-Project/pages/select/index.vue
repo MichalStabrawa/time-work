@@ -8,25 +8,18 @@
           <option value>Option1</option>
           <option value>Option1</option>
         </select>
-         <el-button type="primary">Sprawdź</el-button>
+        <el-button type="primary">Sprawdź</el-button>
       </div>
       <div class="item"></div>
     </div>
-    <section>
-     
-     
-  {{callAnd}}
-
-
-  
-    </section>
+    <section>{{callAnd}}</section>
     <footerComponent/>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import axios from 'axios';
+import { mapActions } from "vuex";
+import axios from "axios";
 import footerComponent from "../../components/footerComponent";
 export default {
   components: {
@@ -34,22 +27,23 @@ export default {
   },
   data() {
     return {
-     dane: null
+      dane: null
     };
   },
 
   methods: {
-        ...mapActions(['loadCoins']),
-    },
-    mounted () {
-        this.loadCoins();
-    },
-  
- computed:{
-callAnd(){
-  return this.$store.state.coins;
-}
- }
+    ...mapActions(["loadCoins"])
+  },
+  mounted() {
+    this.loadCoins();
+  },
+
+  computed: {
+    callAnd() {
+      return this.dane=this.$store.state.coins;
+    
+    }
+  }
 };
 </script>
 
@@ -71,7 +65,7 @@ h1 {
     justify-content: center;
   }
   .item:nth-last-of-type(1) {
-    background: url('../../assets/img/test.jpeg');
+    background: url("../../assets/img/test.jpeg");
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -91,7 +85,7 @@ button {
   margin-top: 40px;
   width: 300px;
   height: 60px;
-  background:#3f5795;
+  background: #3f5795;
 }
 </style>
 
