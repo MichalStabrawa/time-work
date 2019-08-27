@@ -15,7 +15,7 @@
     <section>
      
      
-  
+  {{callAnd}}
 
 
   
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import axios from 'axios';
 import footerComponent from "../../components/footerComponent";
 export default {
   components: {
@@ -35,8 +37,16 @@ export default {
      dane: null
     };
   },
+
+  methods: {
+        ...mapActions(['loadCoins']),
+    },
+    mounted () {
+        this.loadCoins();
+    },
+  
  computed:{
-dataPower() {
+callAnd(){
   return this.$store.state.coins;
 }
  }

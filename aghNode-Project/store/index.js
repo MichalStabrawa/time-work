@@ -13,24 +13,38 @@ export const state = () => {
 
 export const mutations = {
  
-    setTest (state, value) {
+    setCoins (state, value) {
         state.coins = value;
     }
 
 };
 
-export const actions=  {
+/*export const actions=  {
    
  
     loadCoins ({ commit }) {
       axios
         .get('http://127.0.0.1:3001/api/data')
-        .then(r =>coins=r.data)
+        .then(r =>r.data)
        .then(coins=>{
-         console.log(coins)
+        return r.data;
        })
     }
 
 }
+*/import axios from 'axios';
 
+export const actions = {
+   
+        loadCoins ({ commit }) {
+            axios
+              .get('http://127.0.0.1:3001/api/data')
+              .then(r =>r.data)
+             .then(coins=>{
+              commit(coins);
+             })
+          }
+    
+
+};
 

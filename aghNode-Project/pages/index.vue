@@ -9,13 +9,14 @@
       </div>
   
     </header>
-    <div>{{newTech}}</div>
+   
     <footerComponent />
   </div>
 </template>
 
 <script>
 import footerComponent from '../components/footerComponent';
+import axios from 'axios';
   export default {
     components: {
   footerComponent
