@@ -1,6 +1,6 @@
 
-const express = require('express')
-const consola = require('consola')
+const express = require('express');
+const consola = require('consola');
 const cors = require('cors');
 
 const { Nuxt, Builder } = require('nuxt')
@@ -26,10 +26,12 @@ const testNowak = test1.piotrNowakNew;
 
 const data2 = kowalski_jan.data;
 
- var obj = [];
- obj.push(kowalski_jan,testNowak);
+ var obj1 = [];
+ obj1.push(kowalski_jan,testNowak);
 console.log("Object-------------------------->")
- console.log(obj);
+ console.log(obj1);
+
+
 
 
 //console.log(typeof data2);
@@ -47,7 +49,14 @@ const testApiJson = testApi;
 
 
 console.log('APi:')
-console.log(testApiJson.list.projekt1)
+console.log(testApiJson.list.projekt1);
+
+
+const excellData = test1.obj;
+console.log("object :");
+console.log(excellData);
+
+
 
 
 
@@ -123,7 +132,7 @@ app.get('/api/data', function (req, res) {
 });
 
 app.get('/api/data2',function(req,res){
-  res.send(obj);
+  res.send(excellData);
 })
 
 app.listen(port, host)

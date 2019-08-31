@@ -34,6 +34,16 @@ projekt2 = projekt2.map(item=>({
     date: item['Data']
 }));
 
+const kowalski1= {
+    name: 'Jan Kowalski',
+    projekt1: {name: 'Projekt 1',
+    data: projekt1
+},
+    projekt2: {name: 'Projekt2',
+    data: projekt2
+}
+}
+
 
 
 /*for (var prop in projekt1) {
@@ -55,6 +65,7 @@ const piotrNowakNew = {
     data: piotrNowak
 }
 
+
 console.log("Pokaz Piotr Nowak --------------------------------------------------")
 console.log(piotrNowakNew);
 
@@ -63,10 +74,24 @@ for (const i in piotrNowak) {
     console.log("Wartość: ", piotrNowak[i].time);
 }
 
+console.log('Ser');
+console.log(kowalski1);
 
 
+const obj = [kowalski1,piotrNowakNew];
+    
 
-module.exports={projekt1,projekt2,piotrNowakNew};
+
+console.log('Nowy objext')
+console.log(obj[1]);
+
+for (const i in obj) {
+    
+    console.log("wart", obj[0].projekt1.data);
+}
+
+
+module.exports={projekt1,projekt2,piotrNowakNew,obj};
 
 
 

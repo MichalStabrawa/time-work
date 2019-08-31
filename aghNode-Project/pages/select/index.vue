@@ -40,7 +40,7 @@ export default {
 
   computed: {
     callAnd() {
-      return this.dane=this.$store.state.coins;
+      return this.$store.state.coins;
     
     }
   }
