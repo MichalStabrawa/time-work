@@ -3,16 +3,42 @@
     <div class="container main">
       <div class="item">
         <h1>Wybierz pracownika</h1>
-        <select name id>
-          <option value>Option1</option>
-          <option value>Option1</option>
-          <option value>Option1</option>
+        <select name id v-if="emploers != null" v-model="value">
+          <option v-for="item in emploers" v-bind:value="item.name">{{item.name}}</option>
         </select>
-        <el-button type="primary">Sprawdź</el-button>
+        <el-button type="primary" v-if="flag" @click="callServer2">Sprawdź</el-button>
+        <el-button type="secondary" v-if="flag===false" @click="getTimework">Pokaż raport</el-button>
       </div>
       <div class="item"></div>
     </div>
-    <section>{{callAnd}}</section>
+    <section class="container">
+      <div v-if="flag2===true">
+        <h2>{{emploerShowName}}</h2>
+      {{emploerShow}}
+        <select name="" id="">
+         </select>
+      </div>
+      <div v-if="flag2===false">
+        <h2>{{emploerShowName}}</h2>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">Temat</th>
+              <th scope="col">Czas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in emploerShow.data">
+              <td v-bind:value="item.date">{{item.date}}</td>
+              <td class="grey">{{item.task}}</td>
+              <td v-bind:value="item.time" >{{item.time}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
     <footerComponent/>
   </div>
 </template>
@@ -27,21 +53,47 @@ export default {
   },
   data() {
     return {
-      dane: null
+      dane: null,
+      emploers: null,
+      emploerShow: null,
+      emploerShowName: null,
+      flag: true,
+      flag2: true,
+      value: ""
     };
   },
 
   methods: {
-    ...mapActions(["loadCoins"])
+    /*   ...mapActions(["loadCoins"]),*/
+    callServer2() {
+      this.$axios.get("http://127.0.0.1:3001/api/data2").then(res => {
+        console.log("Data with click");
+        console.log("res", res.data);
+        this.emploers = ("res", res.data);
+        this.flag = false;
+      });
+    },
+    getTimework() {
+      if (this.value === "Jan Kowalski") {
+        console.log("To jest jan Kowalski");
+        this.emploerShow = this.emploers[0];
+        this.emploerShowName = this.emploerShow.name;
+        this.flag2 = true;
+      } else {
+        console.log("To jest Piotr Nowak");
+        this.emploerShow = this.emploers[1];
+        this.emploerShowName = this.emploerShow.name;
+        this.flag2 = false;
+      }
+    }
   },
-  mounted() {
+  /*  mounted() {
     this.loadCoins();
-  },
+  },*/
 
   computed: {
     callAnd() {
       return this.$store.state.coins;
-    
     }
   }
 };
@@ -87,6 +139,16 @@ button {
   height: 60px;
   background: #3f5795;
 }
+.thead-light {
+  background: #000;
+  color: #fff;
+  padding: 5px;
+}
+.grey {
+  background: lightgray;
+  padding-left: 5px;
+}
+
 </style>
 
 

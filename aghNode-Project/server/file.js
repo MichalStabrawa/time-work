@@ -34,7 +34,7 @@ projekt2 = projekt2.map(item=>({
     date: item['Data']
 }));
 
-const kowalski1= {
+/*const kowalski1= {
     name: 'Jan Kowalski',
     projekt1: {name: 'Projekt 1',
     data: projekt1
@@ -42,6 +42,19 @@ const kowalski1= {
     projekt2: {name: 'Projekt2',
     data: projekt2
 }
+}*/
+
+const kowalski1 = {
+    name: 'Jan Kowalski',
+    data: {
+        projekt1: {name: 'Projekt 1',
+    data: projekt1
+    },
+        projekt2: {
+        name: 'Projekt 2',
+        data: projekt2
+    }
+    }
 }
 
 
@@ -87,7 +100,7 @@ console.log(obj[1]);
 
 for (const i in obj) {
     
-    console.log("wart", obj[0].projekt1.data);
+    console.log("wart", obj[0].data);
 }
 
 
