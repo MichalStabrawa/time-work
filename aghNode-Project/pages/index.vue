@@ -32,7 +32,7 @@ export default {
     },
     callServer() {
       this.$axios.get("http://127.0.0.1:3001/api/data2").then(res => {
-        console.log("Data with click");
+        console.log("Data with click"+ ("res",res.data));
         this.works=("res", res.data);
       });
     }

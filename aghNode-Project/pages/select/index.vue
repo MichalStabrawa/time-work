@@ -6,17 +6,30 @@
         <select name id v-if="emploers != null" v-model="value">
           <option v-for="item in emploers" v-bind:value="item.name">{{item.name}}</option>
         </select>
-        <el-button type="primary" v-if="flag" @click="callServer2">Sprawdź</el-button>
-        <el-button type="secondary" v-if="flag===false" @click="getTimework">Pokaż raport</el-button>
+        <el-button type="info" v-if="flag" @click="callServer2">Sprawdź</el-button>
+        <el-button type="info" v-if="flag===false" @click="getTimework">Pokaż raport</el-button>
       </div>
       <div class="item"></div>
     </div>
     <section class="container">
       <div v-if="flag2===true">
-        <h2>{{emploerShowName}}</h2>
-      {{emploerShow}}
-        <select name="" id="">
-         </select>
+        <h2>{{emploerShow}}</h2>
+        <h2></h2>
+
+        <select name id>
+          <option value></option>
+        </select>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Tenat</th>
+              <th>Czas</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
       <div v-if="flag2===false">
         <h2>{{emploerShowName}}</h2>
@@ -33,11 +46,33 @@
             <tr v-for="item in emploerShow.data">
               <td v-bind:value="item.date">{{item.date}}</td>
               <td class="grey">{{item.task}}</td>
-              <td class="time" v-bind:value="item.time" >{{item.time}}</td>
+              <td class="time" v-bind:value="item.time">{{item.time}}</td>
             </tr>
           </tbody>
         </table>
-        <button class="danger" @click="getprojectsTime">Czas</button>
+        <el-button type="info" @click="totalTime">Raport</el-button>
+        <div  v-show="time != null" >
+          <p class="report">
+            Całkowity czas pracy przy projekcie
+            <span class="index">{{time}}h</span> ilość tasków
+            <span class="index">{{index}}</span>
+          </p>
+
+          <div class="wrapper-report">
+            <div v-for="item in emploerShow.data">
+              <label for>{{item.task}}</label>
+              <div class="progress">
+                <div
+                  class="progress-item"
+                  v-bind:value="item.time"
+                  v-bind:style="{width: item.time*10+'px' }"
+                >
+                  <span class="content">{{(parseInt(item.time*10*100)/390).toFixed(2)}}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <footerComponent/>
@@ -58,6 +93,7 @@ export default {
       emploers: null,
       emploerShow: null,
       emploerShowName: null,
+      index: null,
       time: null,
       flag: true,
       flag2: true,
@@ -88,19 +124,16 @@ export default {
         this.flag2 = false;
       }
     },
-    getprojectsTime(){
-const timeVal = document.querySelectorAll('.time');
+    totalTime() {
+      let result = 0;
+      let index = 0;
+      this.emploerShow.data.forEach(item => (result += item.time));
+      this.emploerShow.data.forEach(item => (index += 1));
+      console.log(result);
 
-
-
-timeVal.forEach(testuje);
-
-function testuje(item) {
- 
-  console.log(item)
- 
-}
-
+      this.time = result;
+      this.index = index;
+      return result;
     }
   },
   /*  mounted() {
@@ -125,12 +158,24 @@ h1 {
   padding-top: 0;
   padding-bottom: 0px;
   padding-right: 0px;
+
+  @media(max-width: 998px) {
+    flex-direction: column-reverse;
+    padding-left: 30px;
+    padding-left: 30px;
+    height: auto;
+  }
   .item {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @media(max-width: 998px) {
+      width: 100%;
+
+    }
   }
   .item:nth-last-of-type(1) {
     background: url("../../assets/img/test.jpeg");
@@ -139,6 +184,10 @@ h1 {
     background-repeat: no-repeat;
     background-position: top;
     padding-right: 0;
+
+    @media(max-width: 998px) {
+      height: 400px;
+    }
   }
 }
 
@@ -164,7 +213,42 @@ button {
   background: lightgray;
   padding-left: 5px;
 }
+.index {
+  background: #000;
+  color: #fff;
+  padding: 10px;
+}
+.report {
+  margin-top: 50px;
+}
+.wrapper-report {
+  margin-top: 50px;
+  padding: 10px;
+}
 
+.progress {
+  position: relative;
+  width: 390px;
+  height: 15px;
+  border: 1px solid grey;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: grey;
+}
+.progress-item {
+  height: 100%;
+  background: red;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+.content {
+  font-size: 10px;
+  position: absolute;
+  z-index: 100;
+  right: 10px;
+  color: greenyellow;
+}
 </style>
 
 

@@ -51,15 +51,9 @@ projekt2 = projekt2.map(item=>({
 
 const kowalski1 = {
     name: 'Jan Kowalski',
-    data: {
-        projekt1: {name: 'Projekt 1',
-    data: projekt1
-    },
-        projekt2: {
-        name: 'Projekt 2',
-        data: projekt2
-    }
-    }
+    data: [{name: 'Projekt 1',
+projekt: projekt1},{name: 'Projekt2',projekt:projekt2}],
+
 }
 
 
@@ -107,6 +101,9 @@ for (const i in obj) {
     
     console.log("wart", obj[0].data);
 }
+
+console.log(piotrNowak);
+console.log(kowalski1);
 
 
 module.exports={projekt1,projekt2,piotrNowakNew,obj};
