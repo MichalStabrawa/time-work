@@ -33,10 +33,11 @@
             <tr v-for="item in emploerShow.data">
               <td v-bind:value="item.date">{{item.date}}</td>
               <td class="grey">{{item.task}}</td>
-              <td v-bind:value="item.time" >{{item.time}}</td>
+              <td class="time" v-bind:value="item.time" >{{item.time}}</td>
             </tr>
           </tbody>
         </table>
+        <button class="danger" @click="getprojectsTime">Czas</button>
       </div>
     </section>
     <footerComponent/>
@@ -57,6 +58,7 @@ export default {
       emploers: null,
       emploerShow: null,
       emploerShowName: null,
+      time: null,
       flag: true,
       flag2: true,
       value: ""
@@ -85,6 +87,20 @@ export default {
         this.emploerShowName = this.emploerShow.name;
         this.flag2 = false;
       }
+    },
+    getprojectsTime(){
+const timeVal = document.querySelectorAll('.time');
+
+
+
+timeVal.forEach(testuje);
+
+function testuje(item) {
+ 
+  console.log(item)
+ 
+}
+
     }
   },
   /*  mounted() {

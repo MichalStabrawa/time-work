@@ -8,8 +8,12 @@ const patchExell = path.resolve(__dirname, 'kowalski.xls');
 const patch2Exell= path.resolve(__dirname, 'Nowak_Piotr.xls');
 
 
-const workbook =XLSX.readFile(patchExell);
-const workbook2 =XLSX.readFile(patch2Exell);
+const workbook =XLSX.readFile(patchExell, {
+    type: 'binary',
+    cellDates: true,
+    dateNF: 'dd/mm/yyyy'
+    });
+const workbook2 =XLSX.readFile(patch2Exell,{cellDates:true,dateNF:"YYYY-MM-DD"});
 
 //console.log(workbook.SheetNames);
 
@@ -18,8 +22,9 @@ const workbook2 =XLSX.readFile(patch2Exell);
 //console.log("Projekt2 prezentacja" + wp);
 
 const sheet_name_list = workbook.SheetNames;
-let projekt1 = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
-let projekt2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[1]])
+let projekt1 = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
+
+let projekt2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[1]]);
 
 projekt1 = projekt1.map(item => ({
     
@@ -63,7 +68,7 @@ const kowalski1 = {
     console.log("Pokaz mi:"+  projekt1[prop].task+ prop)
 }*/
 const sheet_name_list2 = workbook2.SheetNames;
-let piotrNowak = XLSX.utils.sheet_to_json(workbook2.Sheets[sheet_name_list2[0]]);
+let piotrNowak = XLSX.utils.sheet_to_json(workbook2.Sheets[sheet_name_list2[0]],{dateNF:"YYYY-MM-DD;@",cellDates:true,raw:true});
 
 piotrNowak = piotrNowak.map(item=>({
     task: item['Zadanie'],
