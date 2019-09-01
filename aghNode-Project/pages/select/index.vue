@@ -16,10 +16,6 @@
         <h2>{{emploerShow}}</h2>
         <h2></h2>
 
-        <select name id>
-          <option value></option>
-        </select>
-
         <table>
           <thead>
             <tr>
@@ -51,17 +47,20 @@
           </tbody>
         </table>
         <el-button type="info" @click="totalTime">Raport</el-button>
-        <div  v-show="time != null" >
+        <div v-show="time != null">
           <p class="report">
             Całkowity czas pracy przy projekcie
             <span class="index">{{time}}h</span> ilość tasków
             <span class="index">{{index}}</span>
           </p>
-
-          <div class="wrapper-report">
-            <div v-for="item in emploerShow.data">
-              <label for>{{item.task}}</label>
-              <div class="progress">
+          <el-container>
+            <el-row :gutter="20">
+              <el-col :span="16">
+                <div class="grid-content bg-purple">
+                  <div class="wrapper-report">
+                    <div v-for="item in emploerShow.data">
+                      <label>{{item.task}}</label>
+                      <!-- <div class="progress">
                 <div
                   class="progress-item"
                   v-bind:value="item.time"
@@ -69,9 +68,28 @@
                 >
                   <span class="content">{{(parseInt(item.time*10*100)/390).toFixed(2)}}%</span>
                 </div>
-              </div>
-            </div>
-          </div>
+                      </div>-->
+                      <el-progress v-if="value1===true"
+                        :percentage="(parseInt(item.time*10*100)/390).toFixed(2)"
+                        class="p-bar"
+                      ></el-progress>
+                      <el-progress v-show="value1===false"
+                        type="circle"
+                        :percentage="(parseInt(item.time*10*100)/390).toFixed(2)"
+                      ></el-progress>
+                    </div>
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="8">
+                <div class="grid-content bg-purple">
+                  <h3>Zmień rodzaj wykresu</h3>
+                  <el-switch v-model="value1">
+</el-switch>
+                </div>
+              </el-col>
+            </el-row>
+          </el-container>
         </div>
       </div>
     </section>
@@ -97,7 +115,8 @@ export default {
       time: null,
       flag: true,
       flag2: true,
-      value: ""
+      value: "",
+      value1:true
     };
   },
 
@@ -159,7 +178,7 @@ h1 {
   padding-bottom: 0px;
   padding-right: 0px;
 
-  @media(max-width: 998px) {
+  @media (max-width: 998px) {
     flex-direction: column-reverse;
     padding-left: 30px;
     padding-left: 30px;
@@ -172,9 +191,8 @@ h1 {
     flex-direction: column;
     justify-content: center;
 
-    @media(max-width: 998px) {
+    @media (max-width: 998px) {
       width: 100%;
-
     }
   }
   .item:nth-last-of-type(1) {
@@ -185,7 +203,7 @@ h1 {
     background-position: top;
     padding-right: 0;
 
-    @media(max-width: 998px) {
+    @media (max-width: 998px) {
       height: 400px;
     }
   }
@@ -222,8 +240,6 @@ button {
   margin-top: 50px;
 }
 .wrapper-report {
-  margin-top: 50px;
-  padding: 10px;
 }
 
 .progress {
@@ -248,6 +264,25 @@ button {
   z-index: 100;
   right: 10px;
   color: greenyellow;
+}
+.wrapper-report {
+  label {
+    font-size: 12px;
+  }
+}
+.p-bar {
+  width: 90%;
+  display: flex;
+
+  .el-progress__text {
+  }
+}
+.el-row {
+  width: 100%;
+  padding-top: 50px;
+}
+.el-progress--circle {
+  display: block;
 }
 </style>
 
