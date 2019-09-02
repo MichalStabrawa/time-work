@@ -10,15 +10,15 @@
         <!-- <el-button type="info" v-if="flag" @click="loadCoins" class="btn1">Sprawdź</el-button> -->
         <el-button type="info" v-if="flag==!false" @click="getTimework">Pokaż raport</el-button>
       </div>
-      <div class="item">{{callAnd[0].data[0].projekt}}</div>
+      <div class="item">{{emploerShow}}</div>
     </div>
     <section class="container">
-      <div v-if="flag2===true &&callAnd &&callAnd[0].data">
+      <div v-if="flag2===true && emploerShow && emploerShow[0].data">
         <h2>{{callAnd[0].name}}</h2>
 
         <select name id v-model="selected">
           <option
-            v-for="(item,index) in callAnd[0].data"
+            v-for="(item,index) in emploerShow[0].data"
             :key="index"
             v-bind="item.name"
           >{{item.name}}</option>
