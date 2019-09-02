@@ -3,17 +3,27 @@
     <div class="container main">
       <div class="item">
         <h1>Wybierz pracownika</h1>
-        <select name id v-if="emploers != null" v-model="value">
-          <option v-for="item in emploers" v-bind:value="item.name">{{item.name}}</option>
+        <select name id v-model="value">
+          <option v-for="item in callAnd" v-bind:value="item.name">{{item.name}}</option>
         </select>
-        <el-button type="info" v-if="flag" @click="callServer2">Sprawdź</el-button>
-        <el-button type="info" v-if="flag===false" @click="getTimework">Pokaż raport</el-button>
+        <div>{{value}}</div>
+        <!-- <el-button type="info" v-if="flag" @click="loadCoins" class="btn1">Sprawdź</el-button> -->
+        <el-button type="info" v-if="flag==!false" @click="getTimework">Pokaż raport</el-button>
       </div>
-      <div class="item"></div>
+      <div class="item">{{callAnd[0].data[0].projekt}}</div>
     </div>
     <section class="container">
-      <div v-if="flag2===true">
-        <h2>{{emploerShow}}</h2>
+      <div v-if="flag2===true &&callAnd &&callAnd[0].data">
+        <h2>{{callAnd[0].name}}</h2>
+
+        <select name id v-model="selected">
+          <option
+            v-for="(item,index) in callAnd[0].data"
+            :key="index"
+            v-bind="item.name"
+          >{{item.name}}</option>
+        </select>
+
         <h2></h2>
 
         <table>
@@ -24,7 +34,13 @@
               <th>Czas</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            <tr v-for="item in emploerShow.data[0].projekt">
+              <td v-bind:value="item.date">{{item.date}}</td>
+              <td class="grey">{{item.task}}</td>
+              <td class="time" v-bind:value="item.time">{{item.time}}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div v-if="flag2===false">
@@ -69,11 +85,13 @@
                   <span class="content">{{(parseInt(item.time*10*100)/390).toFixed(2)}}%</span>
                 </div>
                       </div>-->
-                      <el-progress v-if="value1===true"
+                      <el-progress
+                        v-if="value1===true"
                         :percentage="(parseInt(item.time*10*100)/390).toFixed(2)"
                         class="p-bar"
                       ></el-progress>
-                      <el-progress v-show="value1===false"
+                      <el-progress
+                        v-show="value1===false"
                         type="circle"
                         :percentage="(parseInt(item.time*10*100)/390).toFixed(2)"
                       ></el-progress>
@@ -84,8 +102,7 @@
               <el-col :span="8">
                 <div class="grid-content bg-purple">
                   <h3>Zmień rodzaj wykresu</h3>
-                  <el-switch v-model="value1">
-</el-switch>
+                  <el-switch v-model="value1"></el-switch>
                 </div>
               </el-col>
             </el-row>
@@ -98,7 +115,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import axios from "axios";
 import footerComponent from "../../components/footerComponent";
 export default {
@@ -114,31 +131,25 @@ export default {
       index: null,
       time: null,
       flag: true,
-      flag2: true,
+      flag2: null,
       value: "",
-      value1:true
+      value1: true,
+      daneBack: null
     };
   },
 
   methods: {
-    /*   ...mapActions(["loadCoins"]),*/
-    callServer2() {
-      this.$axios.get("http://127.0.0.1:3001/api/data2").then(res => {
-        console.log("Data with click");
-        console.log("res", res.data);
-        this.emploers = ("res", res.data);
-        this.flag = false;
-      });
-    },
+    ...mapActions(["loadCoins"]),
     getTimework() {
+      alert("alert");
       if (this.value === "Jan Kowalski") {
         console.log("To jest jan Kowalski");
-        this.emploerShow = this.emploers[0];
+        this.emploerShow = this.callAnd[0];
         this.emploerShowName = this.emploerShow.name;
         this.flag2 = true;
       } else {
         console.log("To jest Piotr Nowak");
-        this.emploerShow = this.emploers[1];
+        this.emploerShow = this.callAnd[1];
         this.emploerShowName = this.emploerShow.name;
         this.flag2 = false;
       }
@@ -155,9 +166,9 @@ export default {
       return result;
     }
   },
-  /*  mounted() {
+  mounted() {
     this.loadCoins();
-  },*/
+  },
 
   computed: {
     callAnd() {
