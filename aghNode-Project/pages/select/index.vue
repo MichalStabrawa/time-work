@@ -13,11 +13,11 @@
       <div class="item">{{emploerShow}}</div>
     </div>
     <section class="container">
-      <div v-if="flag2===true && emploerShow && emploerShow[0].data">
+      <div v-if="flag2===true">
         <h2>{{callAnd[0].name}}</h2>
 
         <select name id v-model="selected">
-          <option
+          <option v-if="emploerShow[0]"
             v-for="(item,index) in emploerShow[0].data"
             :key="index"
             v-bind="item.name"
@@ -38,7 +38,7 @@
             <tr v-for="item in emploerShow.data[0].projekt">
               <td v-bind:value="item.date">{{item.date}}</td>
               <td class="grey">{{item.task}}</td>
-              <td class="time" v-bind:value="item.time">{{item.time}}</td>
+              <td class="time" v-bind:value="item.time">{{(item.time)}}</td>
             </tr>
           </tbody>
         </table>
@@ -117,13 +117,18 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import axios from "axios";
+import moment from 'moment';
 import footerComponent from "../../components/footerComponent";
+
+
 export default {
   components: {
     footerComponent
   },
+
   data() {
     return {
+      moment: moment,
       dane: null,
       emploers: null,
       emploerShow: null,
