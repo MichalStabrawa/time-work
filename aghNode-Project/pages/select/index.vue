@@ -16,11 +16,11 @@
        <tableOne :name="callAnd"/>
 
 
-      <div v-if="flag2===true">
+      <div v-if="flag2===true &&emploerShow">
         <h2>{{callAnd[0].name}}</h2>
 
         <select name id v-model="selected">
-          <option v-if="emploerShow[0]"
+          <option v-if="emploerShow[0] "
             v-for="(item,index) in emploerShow[0].data"
             :key="index"
             v-bind="item.name"
@@ -41,7 +41,7 @@
             <tr v-for="item in emploerShow.data[0].projekt">
               <td v-bind:value="item.date">{{item.date}}</td>
               <td class="grey">{{item.task}}</td>
-              <td class="time" v-bind:value="item.time">{{(item.time)}}</td>
+              <td class="time" v-bind:value="item.time">{{item.time}}</td>
             </tr>
           </tbody>
         </table>
@@ -147,11 +147,14 @@ export default {
       test: 'Name'
     };
   },
+   mounted() {
+    this.loadCoins();
+  },
 
   methods: {
     ...mapActions(["loadCoins"]),
     getTimework() {
-      alert("alert");
+
       if (this.value === "Jan Kowalski") {
         console.log("To jest jan Kowalski");
         this.emploerShow = this.callAnd[0];
@@ -176,9 +179,7 @@ export default {
       return result;
     }
   },
-  mounted() {
-    this.loadCoins();
-  },
+ 
 
   computed: {
     callAnd() {
