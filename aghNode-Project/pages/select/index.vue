@@ -13,6 +13,9 @@
       <div class="item">{{emploerShow}}</div>
     </div>
     <section class="container">
+       <tableOne :name="callAnd"/>
+
+
       <div v-if="flag2===true">
         <h2>{{callAnd[0].name}}</h2>
 
@@ -24,7 +27,7 @@
           >{{item.name}}</option>
         </select>
 
-        <h2></h2>
+      
 
         <table>
           <thead>
@@ -119,11 +122,12 @@ import { mapActions, mapState } from "vuex";
 import axios from "axios";
 import moment from 'moment';
 import footerComponent from "../../components/footerComponent";
+import tableOne from '../../components/tableOne';
 
 
 export default {
   components: {
-    footerComponent
+    footerComponent,tableOne
   },
 
   data() {
@@ -139,7 +143,8 @@ export default {
       flag2: null,
       value: "",
       value1: true,
-      daneBack: null
+      daneBack: null,
+      test: 'Name'
     };
   },
 
