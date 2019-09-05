@@ -40,7 +40,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
-    '~/plugins/axios'
+    '~/plugins/axios',
+    '~/plugins/moment.js'
   ],
 
   /*
@@ -53,6 +54,9 @@ module.exports = {
   
     
   
+  ],
+  buildModules: [
+    '@nuxtjs/moment'
   ],
   /*
   ** Axios module configuration
