@@ -3,49 +3,25 @@
     <div class="container main">
       <div class="item">
         <h1>Wybierz pracownika</h1>
-        <select name id v-model="value">
-          <option v-for="item in callAnd" v-bind:value="item.name">{{item.name}}</option>
-        </select>
-        <div>{{value}}</div>
-        <!-- <el-button type="info" v-if="flag" @click="loadCoins" class="btn1">Sprawdź</el-button> -->
-        <el-button type="info" v-if="flag==!false" @click="getTimework">Pokaż raport</el-button>
-      </div>
-      <div class="item">{{emploerShow}}</div>
-    </div>
-    <section class="container">
-       <tableOne :name="callAnd"/>
-
-
-      <div v-if="flag2===true &&emploerShow">
-        <h2>{{callAnd[0].name}}</h2>
-
-        <select name id v-model="selected">
-          <option v-if="emploerShow[0] "
-            v-for="(item,index) in emploerShow[0].data"
+        <select id v-model="value">
+          <option
+            v-for="(item,index) in callAnd"
             :key="index"
-            v-bind="item.name"
+            v-bind:value="item.name"
           >{{item.name}}</option>
         </select>
-
-      
-
-        <table>
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Tenat</th>
-              <th>Czas</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in emploerShow.data[0].projekt">
-              <td v-bind:value="item.date">{{item.date}}</td>
-              <td class="grey">{{item.task}}</td>
-              <td class="time" v-bind:value="item.time">{{item.time}}</td>
-            </tr>
-          </tbody>
-        </table>
+        <el-button type="info" @click="getTimework">Pokaż raport</el-button>
       </div>
+      <div class="item"></div>
+    </div>
+    <section class="container">
+      <hr>
+      <div v-if="flag2===true">
+        <h2></h2>
+
+        <tableOne :name="callAnd"/>
+      </div>
+
       <div v-if="flag2===false">
         <h2>{{emploerShowName}}</h2>
 
@@ -58,7 +34,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in emploerShow.data">
+            <tr v-for="(item,index) in emploerShow.data" :key="index">
               <td v-bind:value="item.date">{{item.date}}</td>
               <td class="grey">{{item.task}}</td>
               <td class="time" v-bind:value="item.time">{{item.time}}</td>
@@ -77,17 +53,8 @@
               <el-col :span="16">
                 <div class="grid-content bg-purple">
                   <div class="wrapper-report">
-                    <div v-for="item in emploerShow.data">
+                    <div v-for="(item,index) in emploerShow.data" :key="index">
                       <label>{{item.task}}</label>
-                      <!-- <div class="progress">
-                <div
-                  class="progress-item"
-                  v-bind:value="item.time"
-                  v-bind:style="{width: item.time*10+'px' }"
-                >
-                  <span class="content">{{(parseInt(item.time*10*100)/390).toFixed(2)}}%</span>
-                </div>
-                      </div>-->
                       <el-progress
                         v-if="value1===true"
                         :percentage="(parseInt(item.time*10*100)/390).toFixed(2)"
@@ -96,7 +63,7 @@
                       <el-progress
                         v-show="value1===false"
                         type="circle"
-                        :percentage="(parseInt(item.time*10*100)/390).toFixed(2)"
+                        :percentage="(parseInt(item.time*100)/39).toFixed(2)"
                       ></el-progress>
                     </div>
                   </div>
@@ -120,14 +87,14 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import axios from "axios";
-import moment from 'moment';
+import moment from "moment";
 import footerComponent from "../../components/footerComponent";
-import tableOne from '../../components/tableOne';
-
+import tableOne from "../../components/tableOne";
 
 export default {
   components: {
-    footerComponent,tableOne
+    footerComponent,
+    tableOne
   },
 
   data() {
@@ -144,23 +111,23 @@ export default {
       value: "",
       value1: true,
       daneBack: null,
-      test: 'Name'
+      test: "Name",
+      selected: null
     };
   },
-   mounted() {
+  mounted() {
     this.loadCoins();
   },
 
   methods: {
     ...mapActions(["loadCoins"]),
     getTimework() {
-
       if (this.value === "Jan Kowalski") {
         console.log("To jest jan Kowalski");
         this.emploerShow = this.callAnd[0];
         this.emploerShowName = this.emploerShow.name;
         this.flag2 = true;
-      } else {
+      } else if (this.value === "Piotr Nowak") {
         console.log("To jest Piotr Nowak");
         this.emploerShow = this.callAnd[1];
         this.emploerShowName = this.emploerShow.name;
@@ -179,7 +146,6 @@ export default {
       return result;
     }
   },
- 
 
   computed: {
     callAnd() {

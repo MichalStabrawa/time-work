@@ -5,10 +5,8 @@
         <h1>{{count.title}}</h1>
         <h2>{{count.title2}}</h2>
         <button class="btn" @click="callServer">Testuj</button>
-        <div>{{works}}</div>
       </div>
     </header>
-
     <footerComponent/>
   </div>
 </template>
@@ -31,10 +29,8 @@ export default {
       console.log("Test");
     },
     callServer() {
-      this.$axios.get("http://127.0.0.1:3001/api/data2").then(res => {
-        console.log("Data with click"+ ("res",res.data));
-        this.works=("res", res.data);
-      });
+    
+    this.$router.push('/select')
     }
   },
 
