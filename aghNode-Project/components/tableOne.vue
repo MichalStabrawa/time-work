@@ -11,7 +11,7 @@
     </select>
 
     <!--Table-------------------------------------------------------------->
-    <div class="table-wrapper"v-if="projekt">
+    <div class="table-wrapper" v-if="projekt">
     
        
           <div class="grid-content bg-purple">{{projekt.name}}</div>
@@ -25,13 +25,53 @@
             </thead>
             <tbody>
               <tr v-for="(item,index) in projekt.projekt" :key="index">
-                <td v-bind:value="item.date">{{item.date}}</td>
+                <td v-bind:value="item.date">{{$dayjs(item.date).format('YYYY-MM-DD')}}</td>
                 <td class="grey">{{item.task}}</td>
                 <td class="time" v-bind:value="item.time">{{(item.time)}}</td>
               </tr>
             </tbody>
           </table>
       </div>
+          <el-button type="info" @click="totalTime">Raport</el-button>
+     <div v-show="time != null">
+          <p class="report">
+            Całkowity czas pracy przy projekcie
+            <span class="index">{{time}}h</span>
+          </p>
+          <p class="report">
+             ilość tasków
+            <span class="index">{{index}}</span>
+          </p>
+        <el-container >
+            <el-row :gutter="20">
+              <el-col :span="20">
+                <div v-if="projekt" class="grid-content bg-purple">
+                  <div class="wrapper-report">
+                    <div v-for="(item,index) in projekt.projekt" :key="index">
+                      <label>{{item.task}}</label>
+                      <el-progress
+                        v-if="value1===true"
+                        :percentage="(parseInt(item.time*10*100)/390).toFixed(2)"
+                        class="p-bar"
+                      ></el-progress>
+                     <el-progress
+                        v-show="value1===false"
+                        type="circle"
+                        :percentage="(parseInt(item.time*100)/39).toFixed(2)"
+                      ></el-progress> 
+                    </div>
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="4">
+                <div class="grid-content bg-purple">
+                  <h3>Zmień rodzaj wykresu</h3>
+                  <el-switch v-model="value1"></el-switch>
+                </div>
+              </el-col>
+            </el-row>
+          </el-container>
+        </div> 
   </section>
 </template>
 
@@ -42,7 +82,10 @@ export default {
     return {
       testuje: this.name,
       projekt: null,
-      projektValue: ""
+      projektValue: "",
+      time: null,
+      index: null,
+      value1: true,
     };
   },
   methods: {
@@ -52,6 +95,17 @@ export default {
       } else if (this.projektValue === "Projekt2") {
         this.projekt = this.dataShow[0].data[1];
       }
+    },
+       totalTime() {
+      let result = 0;
+      let index = 0;
+      this.projekt.projekt.forEach(item => (result += item.time));
+      this.projekt.projekt.forEach(item => (index += 1));
+      console.log(result);
+
+      this.time = result;
+      this.index = index;
+      return result;
     }
   },
   computed: {

@@ -41,7 +41,8 @@ module.exports = {
   plugins: [
     '@/plugins/element-ui',
     '~/plugins/axios',
-    '~/plugins/moment.js'
+    '~/plugins/moment.js',
+    '~/plugins/dayjs.js'
   ],
 
   /*
@@ -50,6 +51,7 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
+    '@nuxtjs/dayjs'
     
   
     
