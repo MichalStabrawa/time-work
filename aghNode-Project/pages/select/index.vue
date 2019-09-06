@@ -35,7 +35,7 @@
           </thead>
           <tbody>
             <tr v-for="(item,index) in emploerShow.data" :key="index">
-              <td v-bind:value="item.date">{{item.date}}</td>
+              <td v-bind:value="item.date">{{$dayjs(item.date).format('YYYY-MM-DD')}}</td>
               <td class="grey">{{item.task}}</td>
               <td class="time" v-bind:value="item.time">{{item.time}}</td>
             </tr>
