@@ -40,6 +40,9 @@ export default {
     &:hover {
       color: grey;
     }
+    &:focus{
+      color: grey;
+    }
   }
 }
 </style>
