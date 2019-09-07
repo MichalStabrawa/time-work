@@ -14,16 +14,14 @@
       </div>
       <div class="item"></div>
     </div>
-    <section class="container">
+    <section class="container-main">
       <hr>
-      <div v-if="flag2===true">
-        <h2></h2>
-
-        <tableOne :name="callAnd"/>
+      <div v-if="flag2===true" >
+       <tableOne :name="callAnd"/>
       </div>
 
-      <div v-if="flag2===false">
-        <h2>{{emploerShowName}}</h2>
+      <div v-if="flag2===false" class="wrapper-table">
+        <h3 class="title">Pracownik: {{emploerShowName}}</h3>
 
         <table class="table">
           <thead class="thead-light">
@@ -42,17 +40,20 @@
           </tbody>
         </table>
         <el-button type="info" @click="totalTime">Raport</el-button>
-        <div v-show="time != null">
+        <div  v-show="time != null" >
           <p class="report">
             Całkowity czas pracy przy projekcie
-            <span class="index">{{time}}h</span> ilość tasków
+            <span class="index">{{time}}h</span>
+          </p>
+          <p class="report">
+             Ilość tasków
             <span class="index">{{index}}</span>
           </p>
           <el-container>
             <el-row :gutter="20">
               <el-col :span="16">
                 <div class="grid-content bg-purple">
-                  <div class="wrapper-report">
+                  <div v-bind:class="{ active: !value1 }" class="wrapper-report">
                     <div v-for="(item,index) in emploerShow.data" :key="index">
                       <label>{{item.task}}</label>
                       <el-progress
@@ -60,7 +61,7 @@
                         :percentage="(parseInt(item.time*10*100)/390).toFixed(2)"
                         class="p-bar"
                       ></el-progress>
-                      <el-progress
+                      <el-progress class="circle-progress"
                         v-show="value1===false"
                         type="circle"
                         :percentage="(parseInt(item.time*100)/39).toFixed(2)"
@@ -71,7 +72,7 @@
               </el-col>
               <el-col :span="8">
                 <div class="grid-content bg-purple">
-                  <h3>Zmień rodzaj wykresu</h3>
+                  <h4>Zmień rodzaj wykresu</h4>
                   <el-switch v-model="value1"></el-switch>
                 </div>
               </el-col>
@@ -166,7 +167,7 @@ h1 {
   padding-bottom: 0px;
   padding-right: 0px;
 
-  @media (max-width: 998px) {
+  @media(max-width: 998px) {
     flex-direction: column-reverse;
     padding-left: 30px;
     padding-left: 30px;
@@ -179,8 +180,9 @@ h1 {
     flex-direction: column;
     justify-content: center;
 
-    @media (max-width: 998px) {
+    @media(max-width: 998px) {
       width: 100%;
+
     }
   }
   .item:nth-last-of-type(1) {
@@ -191,7 +193,7 @@ h1 {
     background-position: top;
     padding-right: 0;
 
-    @media (max-width: 998px) {
+    @media(max-width: 998px) {
       height: 400px;
     }
   }
@@ -222,13 +224,23 @@ button {
 .index {
   background: #000;
   color: #fff;
-  padding: 10px;
+  padding: 5px;
+  border-radius: 5px;
 }
 .report {
   margin-top: 50px;
 }
-.wrapper-report {
+.report:nth-child(2) {
+  margin-top:25px;
+  margin-bottom: 25px;
 }
+.wrapper-table {
+  padding-top: 20px;
+  .title {
+    margin-bottom: 20px;
+  }
+}
+
 
 .progress {
   position: relative;
@@ -252,26 +264,44 @@ button {
   z-index: 100;
   right: 10px;
   color: greenyellow;
+  
+}
+.el-container {
+ 
+  padding-top: 30px;
 }
 .wrapper-report {
+  &.active {
+   &> div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f1f1ec;
+    padding-bottom: 10px;
+
+    label {
+      color: green;
+      font-weight: bold;
+    }
+    }
+
+  }
   label {
     font-size: 12px;
   }
+ 
 }
-.p-bar {
-  width: 90%;
-  display: flex;
-
-  .el-progress__text {
+.el_progress {
+  position: relative;
+ .el-progress__text {
+   position: absolute;
+   z-index: 1;
+    font-size: 12px;
   }
 }
-.el-row {
-  width: 100%;
-  padding-top: 50px;
-}
-.el-progress--circle {
-  display: block;
-}
+
+
 </style>
 
 

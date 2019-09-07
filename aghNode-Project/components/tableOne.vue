@@ -42,11 +42,13 @@
              ilość tasków
             <span class="index">{{index}}</span>
           </p>
-        <el-container >
+       <el-container>
+
+      
             <el-row :gutter="20">
-              <el-col :span="20">
-                <div v-if="projekt" class="grid-content bg-purple">
-                  <div class="wrapper-report">
+              <el-col :span="18">
+                <div v-if="projekt" class=" ">
+                  <div v-bind:class="{ active: !value1 }" class="wrapper-report">
                     <div v-for="(item,index) in projekt.projekt" :key="index">
                       <label>{{item.task}}</label>
                       <el-progress
@@ -63,14 +65,14 @@
                   </div>
                 </div>
               </el-col>
-              <el-col :span="4">
-                <div class="grid-content bg-purple">
+              <el-col :span="6">
+                <div class=" ">
                   <h3>Zmień rodzaj wykresu</h3>
                   <el-switch v-model="value1"></el-switch>
                 </div>
               </el-col>
             </el-row>
-          </el-container>
+         </el-container>
         </div> 
   </section>
 </template>
@@ -160,6 +162,9 @@ export default {
 .grey {
   background: lightgray;
   padding-left: 5px;
+}
+.el-progress__text {
+  color:red;
 }
 </style>
 

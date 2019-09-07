@@ -13,3 +13,40 @@ select {
     color: #fff;
     padding: 5px;
   }
+
+  .container-main {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .el_progress-bar {
+    position: relative;
+   .el-progress__text {
+     position: absolute;
+     z-index: 1;
+    color: red;
+    }
+  }
+  .wrapper-report {
+    &.active {
+     &> div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #f1f1ec;
+      padding-bottom: 10px;
+  
+      label {
+        color: green;
+        font-weight: bold;
+      }
+      }
+  
+    }
+    label {
+      font-size: 12px;
+    }
+   
+  }
