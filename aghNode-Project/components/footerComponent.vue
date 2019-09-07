@@ -2,13 +2,17 @@
   <footer class="footer">
     <div class="container">
       <div class="wrapper-footer">
-          <div>projekt i realizacja &copy Michał Stabrawa</div>
-        <div>
+        <div>projekt i realizacja &copy Michał Stabrawa</div>
+        <div class="icon-wrapper">
           <a href="https://github.com/MichalStabrawa" target="_blank">
-            <i class="fab fa-github"></i>
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
           </a>
-          <a href>
-            <i class="fab fa-linkedin-in"></i>
+          <a href="https://www.linkedin.com/in/michal-stabrawa-48b408102/" target="_blank">
+            <span class="icon">
+              <i class="fab fa-linkedin-in"></i>
+            </span>
           </a>
         </div>
       </div>
@@ -24,7 +28,21 @@ export default {};
 <style lang="scss" scoped>
 .footer {
   height: 100px;
-  background-image: linear-gradient(to right, #dad9d4, #e0ddd9, #e5e1de, #e9e5e4, #ede9e9, #ede3e5, #eadce3, #e5d7e4, #d7c6df, #c3b7dc, #a9aad9, #889ed7);
+  background-image: linear-gradient(
+    to right,
+    #dad9d4,
+    #e0ddd9,
+    #e5e1de,
+    #e9e5e4,
+    #ede9e9,
+    #ede3e5,
+    #eadce3,
+    #e5d7e4,
+    #d7c6df,
+    #c3b7dc,
+    #a9aad9,
+    #889ed7
+  );
   color: grey;
 
   .container {
@@ -34,6 +52,7 @@ export default {};
 
     a {
       margin: 10px;
+      text-decoration: none;
     }
     .wrapper-footer {
       display: flex;
@@ -42,10 +61,33 @@ export default {};
       align-items: center;
     }
   }
+  .icon-wrapper {
+    display: flex;
 
-  .fab {
-    font-size: 30px;
-    color: #3f5795;
+    .icon {
+      border-radius: 50%;
+      display: flex;
+      width: 48px;
+      height: 48px;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      transition: all 0.5s;
+
+      &:hover {
+        transform: rotate(360deg);
+       
+
+        .fab {
+          color: #13192A;
+        }
+      }
+
+      .fab {
+        font-size: 30px;
+        color: #3f5795;
+      }
+    }
   }
 }
 </style>

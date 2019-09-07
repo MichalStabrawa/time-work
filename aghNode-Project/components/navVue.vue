@@ -1,7 +1,11 @@
 <template>
   <nav class="nav">
-    <nuxt-link class="link" to="/">Home</nuxt-link>
+   <button class="hamburger"><i class="fas fa-bars"></i></button> 
+   <div class="menu-item">
+<nuxt-link class="link" to="/">Home</nuxt-link>
     <nuxt-link class="link" to="/select">Pracownicy</nuxt-link>
+   </div>
+    
   </nav>
 </template>
 
@@ -30,7 +34,7 @@ export default {
   align-items: center;
 
   a {
-    color: #677dd3;
+    color: #6A71A6;
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
@@ -38,13 +42,49 @@ export default {
     padding: 10px;
 
     &:hover {
-      color: grey;
+      color: #181C24;
     }
     &:focus{
-      color: grey;
+      color: #181C24;
+    }
+  }
+  .hamburger {
+    width: 30px;
+    height: 30px;
+    margin-top: 0px;
+    background: transparent;
+    cursor:pointer;
+    display: none;
+
+
+  }
+}
+@media(max-width:768px) {
+  .nav {
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    .hamburger {
+      display: block;
+    }
+    .menu-item {
+   position: absolute;
+   z-index: 1000;
+   top: 80px;
+   display: flex;
+   flex-direction: column;
+   background:#000;
+   width: 100%;
+   margin-left: -50px;
+   padding-left: 40px;
+   width: 100%;
+   
     }
   }
 }
+
+
 </style>
 
 

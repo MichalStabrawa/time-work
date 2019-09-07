@@ -51,7 +51,7 @@
           </p>
           <el-container>
             <el-row :gutter="20">
-              <el-col :span="16">
+              <el-col :span="20">
                 <div class="grid-content bg-purple">
                   <div v-bind:class="{ active: !value1 }" class="wrapper-report">
                     <div v-for="(item,index) in emploerShow.data" :key="index">
@@ -70,7 +70,7 @@
                   </div>
                 </div>
               </el-col>
-              <el-col :span="8">
+              <el-col :span="4">
                 <div class="grid-content bg-purple">
                   <h4>Zmień rodzaj wykresu</h4>
                   <el-switch v-model="value1"></el-switch>
@@ -186,9 +186,9 @@ h1 {
     }
   }
   .item:nth-last-of-type(1) {
-    background: url("../../assets/img/test.jpeg");
+    background: url("../../assets/img/search.jpg");
     height: 100%;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: top;
     padding-right: 0;
