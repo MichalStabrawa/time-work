@@ -13,3 +13,75 @@ select {
     color: #fff;
     padding: 5px;
   }
+
+  .container-main {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .el_progress-bar {
+    position: relative;
+   .el-progress__text {
+     position: absolute;
+     z-index: 1;
+    color: red;
+    }
+  }
+  .wrapper-report {
+    &.active {
+     &> div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #f1f1ec;
+      padding-bottom: 10px;
+  
+      label {
+        color: green;
+        font-weight: bold;
+      }
+      }
+  
+    }
+    label {
+      font-size: 12px;
+    }
+   
+  }
+  .index {
+    background: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .report {
+  margin-top: 50px;
+}
+.report:nth-child(2) {
+  margin-top:25px;
+  margin-bottom: 25px;
+}
+.el-progress__text{
+  position:absolute;
+  font-size: 12px;
+  color: red;
+}
+.el-row {
+  width: 100%;
+}
+
+button {
+  margin-top: 40px;
+  width: 300px;
+  height: 60px;
+  background: #3f5795;
+  cursor: pointer;
+}
+select {
+  cursor: pointer;
+  option {
+    cursor: pointer;
+  }
+}
