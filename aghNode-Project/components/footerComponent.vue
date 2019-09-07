@@ -24,7 +24,7 @@ export default {};
 <style lang="scss" scoped>
 .footer {
   height: 100px;
-  background: #f2f6f9;
+  background-image: linear-gradient(to right, #dad9d4, #e0ddd9, #e5e1de, #e9e5e4, #ede9e9, #ede3e5, #eadce3, #e5d7e4, #d7c6df, #c3b7dc, #a9aad9, #889ed7);
   color: grey;
 
   .container {

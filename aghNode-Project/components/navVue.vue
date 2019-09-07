@@ -23,7 +23,7 @@ export default {
 <style lang="scss" scoped>
 .nav {
   height: 80px;
-  background: #f0f4f7;
+  background-image: linear-gradient(to right, #dad9d4, #e0ddd9, #e5e1de, #e9e5e4, #ede9e9, #ede3e5, #eadce3, #e5d7e4, #d7c6df, #c3b7dc, #a9aad9, #889ed7);;
   padding-left: 50px;
   padding-right: 50px;
   display: flex;
